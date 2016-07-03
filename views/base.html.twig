@@ -27,6 +27,16 @@
         .table th > a {
             color: inherit;
         }
+
+        @media print {
+            .site-footer {
+                display: none;
+            }
+
+            a[href]:after {
+                content: none;
+            }
+        }
     </style>
 </head>
 <body>
