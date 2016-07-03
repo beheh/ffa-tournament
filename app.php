@@ -6,7 +6,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use BehEh\Wizard\Entities\Participant;
 
 $app = new Silex\Application();
-$app['debug'] = false;
+$app['debug'] = true;
 $base = 'http://localhost/~benedict/wizard/';
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -48,28 +48,30 @@ $twig = $app['twig'];
 
 $twig->addGlobal('base', $base);
 
-$rounds = $em->getRepository('BehEh\\Wizard\\Entities\\Round')->findBy(
-    array('type' => \BehEh\Wizard\Entities\Round::TYPE_ROUND)
-);
+$app->before(function (Request $request) use ($app, $em) {
+	$rounds = $em->getRepository('BehEh\\Wizard\\Entities\\Round')->findBy(
+	    array('type' => \BehEh\Wizard\Entities\Round::TYPE_ROUND)
+	);
 
-$round_items = array();
-foreach ($rounds as $round) {
-    $id = $round->getId();
-    $round_items['/groupstage/round-' . $id] = $id . '. Hauptrunde';
-}
+	$round_items = array();
+	foreach ($rounds as $round) {
+	    $id = $round->getId();
+	    $round_items['/groupstage/round-' . $id] = $id . '. Hauptrunde';
+	}
 
-$navbar = array_merge(
-    array(
-        '/participants' => 'Teilnehmer',
-    ),
-    $round_items,
-    array(
-        '/semifinals' => 'Halbfinale',
-        '/finals' => 'Finale',
-    )
-);
+	$navbar = array_merge(
+	    array(
+		'/participants' => 'Teilnehmer',
+	    ),
+	    $round_items,
+	    array(
+		'/semifinals' => 'Halbfinale',
+		'/finals' => 'Finale',
+	    )
+	);
 
-$twig->addGlobal('navbar', $navbar);
+	$app['twig']->addGlobal('navbar', $navbar);
+});
 
 $app->before(function (Request $request) use ($app) {
     $app['twig']->addGlobal('current_url', strtok($request->getUri(), '?'));
