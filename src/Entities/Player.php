@@ -48,7 +48,7 @@ class Player {
 
     public function getRank()
     {
-        return '42';
+        return $this->points;
     }
 
     /**
