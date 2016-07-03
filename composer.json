@@ -1,0 +1,20 @@
+{
+    "name": "beheh/wizard",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Benedict Etzel",
+            "email": "developer@beheh.de"
+        }
+    ],
+    "require": {
+        "silex/silex": "^2.0",
+        "twig/twig": "^1.24",
+        "doctrine/dbal": "^2.2",
+        "doctrine/orm": "^2.5",
+        "dflydev/doctrine-orm-service-provider": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {"BehEh\\Wizard\\": "src/"}
+    }
+}

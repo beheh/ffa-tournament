@@ -1,0 +1,72 @@
+{% set title %}{% block title %}1. Wizard-Turnier{% endblock %}{% endset %}
+<html>
+<head>
+    <title>Wizard: {{ title }}</title>
+    <base href="{{ base }}" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <style>
+        .site-footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #bebebe;
+            border-top: 1px solid #eee;
+            padding-top: 9px;
+            margin: 20px 0 40px;
+        }
+
+        .site-footer a {
+            color: inherit;
+        }
+
+        .row > div > h2:first-child {
+            margin-top: 0px;
+        }
+
+        .table th > a {
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Navigation umschalten</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href=".">1. Wizard-Turnier</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% for url, title in navbar %}
+                        <li{% if base|slice(0, -1) ~ url == current_url %} class="active"{% endif %}><a href=".{{ url }}">{{ title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block fullcontent %}
+    <div class="page-header">
+        <div class="container">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="container">
+    {% block content %}
+    {% endblock %}
+    </div>
+    {% endblock %}
+    <footer class="site-footer">
+        <div class="container">
+            <p><a href="https://beheh.de">Benedict</a>, 2016 &middot; Built with &hearts; in Lübeck</p>
+        </div>
+    </footer>
+</body>
+</html>
