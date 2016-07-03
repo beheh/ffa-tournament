@@ -5,7 +5,7 @@ use Symfony\Component\Console\Exception\RuntimeException;
 
 /**
  * @Entity
- * @Table(name="players",uniqueConstraints={@UniqueConstraint(name="match_points", columns={"match_id", "points"})})
+ * @Table(name="players")
  */
 class Player {
     
