@@ -13,11 +13,6 @@ class Round extends Entity
     const TYPE_FINALE = 2;
 
     /**
-     * @OneToMany(targetEntity="Match", mappedBy="match")
-     */
-    private $player;
-
-    /**
      * @OneToMany(targetEntity="Match", mappedBy="round")
      */
     private $matches;
