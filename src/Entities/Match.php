@@ -12,7 +12,13 @@ class Match extends Entity {
      * @OneToMany(targetEntity="Player", mappedBy="match")
      * @OrderBy({"points" = "DESC"})
      */
-    private $players;
+    private $players_by_points;
+
+    /**
+     * @OneToMany(targetEntity="Player", mappedBy="match")
+     * @OrderBy({"points" = "ASC"})
+     */
+    private $players_by_rank;
 
     /**
      * @ManyToOne(targetEntity="Round")
@@ -40,7 +46,7 @@ class Match extends Entity {
      */
     public function getPlayers()
     {
-        return $this->players;
+        return $this->getRound()->isNormalRound() ? $this->players_by_points : $this->players_by_rank;
     }
 
     /**
