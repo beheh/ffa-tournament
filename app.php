@@ -7,7 +7,7 @@ use BehEh\Wizard\Entities\Participant;
 
 $app = new Silex\Application();
 $app['debug'] = true;
-$base = 'http://localhost/~benedict/wizard/';
+$base = 'http://'.$_SERVER['HTTP_HOST'];
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
