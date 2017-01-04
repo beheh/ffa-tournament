@@ -10,18 +10,12 @@ class Match extends Entity {
 
     /**
      * @OneToMany(targetEntity="Player", mappedBy="match")
-     * @OrderBy({"points" = "DESC"})
-     */
-    private $players_by_points;
-
-    /**
-     * @OneToMany(targetEntity="Player", mappedBy="match")
      * @OrderBy({"points" = "ASC"})
      */
-    private $players_by_rank;
+    private $players;
 
     /**
-     * @ManyToOne(targetEntity="Round")
+     * @ManyToOne(targetEntity="Round", inversedBy="matches")
      */
     private $round;
 
