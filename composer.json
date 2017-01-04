@@ -9,8 +9,8 @@
     ],
     "require": {
         "silex/silex": "^2.0",
-        "twig/twig": "^1.24",
-        "doctrine/dbal": "^2.2",
+        "twig/twig": "^1.30",
+        "doctrine/dbal": "^2.5",
         "doctrine/orm": "^2.5",
         "dflydev/doctrine-orm-service-provider": "^2.0"
     },
